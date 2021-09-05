@@ -117,3 +117,8 @@ div#calendar{
   div.clear{
       clear:both;
   } 
+
+  div#calendar ul.dates li.current{
+      color: #FFF;
+      background-color: #859cff;
+  }

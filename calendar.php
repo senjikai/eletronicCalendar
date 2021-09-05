@@ -15,6 +15,7 @@ class Calendar{
     private $currentDate = null;
     private $daysInMonth = 0;
     private $naviHref = null;
+    private $dayCurrent = 0;
 
     /********************* PUBLIC **********************/
 
@@ -42,10 +43,8 @@ class Calendar{
         $this->currentYear=$year;
         $this->currentMonth=$month;
         $this->daysInMonth=$this->_daysInMonth($month,$year);
-        //----------------------------
-        // echo $this->_weeksInMonth($month,$year)."<br>";
-        // echo $this->_daysInMonth($month,$year);
-        //----------------------------
+
+        // echo $this->day = date('j');
 
         $content = '<div id="calendar">'.
                         '<div class="box">'.
@@ -80,7 +79,7 @@ class Calendar{
     */
     private function _showDay($cellNumber){
         if($this->currentDay==0){
-            $firstDayOfTheWeek = date('N',strtotime($this->currentYear.'-'.$this->currentMonth.'-01'));
+            $firstDayOfTheWeek = date('w',strtotime($this->currentYear.'-'.$this->currentMonth.'-01'));
 
             if(intval($cellNumber) == intval($firstDayOfTheWeek)){
                 $this->currentDay=1;
@@ -97,8 +96,15 @@ class Calendar{
             $cellContent=null;
         }
 
-        return '<li id="li-'.$this->currentDate.'" class="'.($cellNumber % 7 == 1 ?' start ':($cellNumber % 7 == 0 ?' end ':' ')).
-                ($cellContent==null ? 'mask':'').'">'.$cellContent.'</li>';
+        $this->dayCurrent = date('Y-m-d');
+
+        if($this->currentDate == $this->dayCurrent){
+            return '<li id="li-'.$this->currentDate.'" class="'.($cellNumber % 7 == 6 ?' end current':($cellNumber % 7 == 0 ?' start current':' ')).'">'.$cellContent.'</li>';
+        }
+        else{
+            return '<li id="li-'.$this->currentDate.'" class="'.($cellNumber % 7 == 6 ?' end ':($cellNumber % 7 == 0 ?' start ':' ')).
+            ($cellContent==null ? 'mask':'').'">'.$cellContent.'</li>';
+        }
     }
 
     /**
@@ -146,9 +152,8 @@ class Calendar{
         // find number of days in this month
         $daysInMonths = $this->_daysInMonth($month, $year);
         $numOfweeks = ($daysInMonths % 7 == 0 ? 0 : 1) + intval($daysInMonths / 7);
-        //$numOfweeks = 1 + intval($daysInMonths / 7);
-        $monthEndingDay = date('N',strtotime($year.'-'.$month.'-'.$daysInMonths));
-        $monthStartDay = date('N',strtotime($year.'-'.$month.'-01'));
+        $monthEndingDay = date('w',strtotime($year.'-'.$month.'-'.$daysInMonths));
+        $monthStartDay = date('w',strtotime($year.'-'.$month.'-01'));
 
         if($monthEndingDay<$monthStartDay){
             $numOfweeks++;
