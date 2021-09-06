@@ -122,3 +122,15 @@ div#calendar{
       color: #FFF;
       background-color: #859cff;
   }
+
+/* area */
+.area{
+    border: 1px solid #ff3030;
+    display: flex;
+    /* justify-content: space-between; */
+    /* align-items: center; */
+}
+
+.schedule{
+    margin-left: 25px;
+}

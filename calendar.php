@@ -98,13 +98,8 @@ class Calendar{
 
         $this->dayCurrent = date('Y-m-d');
 
-        if($this->currentDate == $this->dayCurrent){
-            return '<li id="li-'.$this->currentDate.'" class="'.($cellNumber % 7 == 6 ?' end current':($cellNumber % 7 == 0 ?' start current':' ')).'">'.$cellContent.'</li>';
-        }
-        else{
-            return '<li id="li-'.$this->currentDate.'" class="'.($cellNumber % 7 == 6 ?' end ':($cellNumber % 7 == 0 ?' start ':' ')).
-            ($cellContent==null ? 'mask':'').'">'.$cellContent.'</li>';
-        }
+        return '<li id="li-'.$this->currentDate.'" class="'.($cellNumber % 7 == 6 ?' end '.($this->dayCurrent == $this->currentDate?'current':'').'':($cellNumber % 7 == 0 ?' start '.($this->dayCurrent == $this->currentDate?'current':'').'':' '.($this->dayCurrent == $this->currentDate?'current':'').'')).
+                ($cellContent==null ? 'mask':'').'">'.$cellContent.'</li>';
     }
 
     /**
