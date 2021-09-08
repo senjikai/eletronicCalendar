@@ -154,7 +154,8 @@ class Calendar{
             $numOfweeks++;
         }
 
-        return $numOfweeks;
+        // return $numOfweeks;
+        return 6;
     }
 
     /**
