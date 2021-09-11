@@ -98,7 +98,7 @@ class Calendar{
 
         $this->dayCurrent = date('Y-m-d');
 
-        return '<li id="li-'.$this->currentDate.'" class="'.($cellNumber % 7 == 6 ?' end '.($this->dayCurrent == $this->currentDate?'current':'').'':($cellNumber % 7 == 0 ?' start '.($this->dayCurrent == $this->currentDate?'current':'').'':' '.($this->dayCurrent == $this->currentDate?'current':'').'')).
+        return '<li id="'.$this->currentDate.'" onclick="getId(this.id)"  class="'.($cellNumber % 7 == 6 ?' end '.($this->dayCurrent == $this->currentDate?'current':'').'':($cellNumber % 7 == 0 ?' start '.($this->dayCurrent == $this->currentDate?'current':'').'':' '.($this->dayCurrent == $this->currentDate?'current':'').'')).
                 ($cellContent==null ? 'mask':'').'">'.$cellContent.'</li>';
     }
 

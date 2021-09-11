@@ -42,8 +42,7 @@ include 'event.php';
             </div> <!--end row-->
 
                 <!-- modal window -->
-
-                <form class="modal fade" id="janela">
+                <form class="modal fade" id="janela" onSubmit="saveEvent(this)">
         
                 <div class="modal-dialog modal-md">
                 <div class="modal-content">
@@ -61,7 +60,7 @@ include 'event.php';
                     <div class="row">
                         <div class="form-group">
                             <div class="col-sm-2">Title*</div>
-                            <div class="col-sm-10"><input type="text" class="form-control" id="title" placeholder="Event Title"></div>
+                            <div class="col-sm-10"><input type="text" name="title" class="form-control" id="title" placeholder="Event Title"></div>
                         </div>
                     </div><!--row-->
                     <br>
@@ -71,7 +70,7 @@ include 'event.php';
 
                             <div class="col-sm-4">
                                 <div class="input-group date" data-provide="datepicker">
-                                    <input type="text" class="form-control" placeholder="mm/dd/yyyy">
+                                    <input type="text" name="dtStart" class="form-control" placeholder="mm/dd/yyyy">
                                     <div class="input-group-addon" >
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </div>
@@ -82,7 +81,7 @@ include 'event.php';
                             
                             <div class="col-sm-4">
                                 <div class="input-group date" data-provide="datepicker">
-                                    <input type="text" class="form-control" placeholder="mm/dd/yyyy">
+                                    <input type="text" name="dtEnd" class="form-control" placeholder="mm/dd/yyyy">
                                     <div class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </div>
@@ -143,6 +142,7 @@ include 'event.php';
                 </div>
 
             </form>
+            <!-- modal window -->
 
         </div> <!--end container area-->
 

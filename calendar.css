@@ -128,18 +128,18 @@ div#calendar{
 
 .gap{
     height: 51%;
-    min-height: 10%;
 }
 
 .gap-head{
     margin-top: 40px;
 }
 
+
 @media only screen and (max-width:600px){
     .gap{
         height: 0px;
     }
-
+    
     .gap-head{
         margin-top: 0px;
     }
