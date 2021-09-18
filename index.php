@@ -31,7 +31,12 @@ include 'event.php';
                     ?>
 
                     <div>
-                        <input type="text" class="form-control" value="No schedule for this day">
+                        <table border="1">
+                            <tr>
+                                <td>No schedule for this day</td>
+                            </tr>
+                        </table>
+                        <!-- <input type="text" class="form-control" value=""> -->
                     </div>
                     <br>
                     <div class="gap"></div>

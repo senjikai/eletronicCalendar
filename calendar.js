@@ -47,6 +47,25 @@ function selectItem(id){
         $('.con2 h2').html(getDayWeek(dt.getDay()));
         $('.con2 h1').html(reaDate(id));
     }
+
+    var element = JSON.parse(localStorage.getItem('content'));
+
+    $('table').html('<tr><td>No schedule for this day</td></tr>');
+
+    var counter = 0;
+
+    for(var j = 0;j<element.length;j++){
+        
+        if(trasformDate(element[j].dtStart) == id || trasformDate(element[j].dtEnd) == id){
+            counter++;
+
+            if(counter == 1){
+                $('table tr').remove(); 
+            }
+
+            $('table').append('<tr><td>'+element[j].title+'</td></tr>');
+        }
+    }
 }
 
 function reaDate(date){
@@ -96,9 +115,35 @@ function getDayWeek(day){
     return week;
 }
 
-$('#2021-09-07').css({
-    "border-bottom":"12px solid #5e7bff"
-});
+//format to yyyy-mm-dd
+function trasformDate(value){
+
+    var month = value.substring(0,2);
+    var day = value.substring(3,5);
+    var year = value.substring(6,10);
+
+    return year+'-'+month+'-'+day;
+}
+
+function events(){
+
+    var events = JSON.parse(localStorage.getItem('content'));
+
+    for(var i = 0;i<events.length;i++){
+        $('#'+trasformDate(events[i].dtStart)).css({
+            "border-bottom":"12px solid #5e7bff"
+        });
+        $('#'+trasformDate(events[i].dtEnd)).css({
+            "border-bottom":"12px solid #5e7bff"
+        });
+    }
+
+    // $('#2021-09-07').css({
+    //     "border-bottom":"12px solid #5e7bff"
+    // });
+}
+
+events();
 
 function saveEvent(element){
 
@@ -127,5 +172,7 @@ function saveEvent(element){
         localStorage.setItem('content',JSON.stringify(elements));
     }
 
-    console.log(JSON.parse(localStorage.getItem('content')));
+    dates = JSON.parse(localStorage.getItem('content'));
+
+    // console.log(date[0].dtStart+' '+date[0].dtEnd);
 }
